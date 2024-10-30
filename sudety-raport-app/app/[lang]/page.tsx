@@ -1,4 +1,5 @@
 // import Image from "next/image";
+import { Header } from './components/Header';
 import { Locale, getDictionary } from './dictionaries';
 import './globals.css';
 
@@ -12,6 +13,11 @@ export default async function Home({ params }: Readonly<Props>) {
   const intl = await getDictionary(lang);
 
   return (
-    <main><h1>{ intl.some_text }</h1></main>
+    <>
+      <Header />
+      <main>
+        <h1>{ intl.some_text }</h1>
+      </main>
+    </>
   );
 }
