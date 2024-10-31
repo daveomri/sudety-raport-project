@@ -1,16 +1,30 @@
 "use client";
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import Link from 'next/link';
 import Image from 'next/image';
 
-// todo create a function for the links and links that will be translated use keywords
+type Props = {
+  navBar: {
+    key: string;
+    value: string;
+  }[]
+}
 
-export const Header = () => {
+// todo create a function for the links and links that will be translated use keywords
+const createLinks = (navBar: {key: string, value: string}[]) => {
+  return navBar.map((item) => {
+    return <Link href={`/${item.key}`} key={item.key} className="text-white block hover:bg-white hover:text-black rounded-lg p-2 text-center">{item.value}</Link>;
+  });
+};
+
+export const Header = ({ navBar }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const isOpenHelper = () => {
     setIsOpen(!isOpen);
   };
+
+  const cachedLinks = useMemo(() => createLinks(navBar), [navBar]);
 
   return (
     <header className='sticky top-0'>
@@ -26,15 +40,7 @@ export const Header = () => {
                   </div>
                   <div className='hidden md:block'>
                     <div className='ml-4 flex items-center space-x-4'>
-                      <Link href="/" className="text-white hover:bg-white hover:text-black rounded-lg p-2">
-                        One
-                      </Link>
-                      <Link href="/" className="text-white hover:bg-white hover:text-black rounded-lg p-2">
-                        Two
-                      </Link>
-                      <Link href="/" className="text-white hover:bg-white hover:text-black rounded-lg p-2">
-                        Three
-                      </Link>
+                      {cachedLinks}
                     </div>
                   </div>
                   <div className='md:hidden  flex items-center'>
@@ -74,15 +80,7 @@ export const Header = () => {
               isOpen && (
                 <div className='md:hidden'>
                   <div className='px-2 py-2 space-y-1 sm:px3'>
-                      <Link href="/" className="text-white block hover:bg-white hover:text-black rounded-lg p-2 text-center">
-                        One
-                      </Link>
-                      <Link href="/" className="text-white hover:bg-white hover:text-black rounded-lg p-2 block text-center">
-                        Two
-                      </Link>
-                      <Link href="/" className="text-white hover:bg-white hover:text-black rounded-lg p-2 block text-center">
-                        Three
-                      </Link>
+                      {cachedLinks}
                   </div>
                 </div>
               )
