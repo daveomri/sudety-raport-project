@@ -1,8 +1,15 @@
 {
-    "some_text": "Sudety Raport kde kultura vzkveta",
-    "rap_weekly": "Rapový týdenník",
-    "rap_tale": "Rapové příběhy",
-    "playlists": "Playlisty",
-    "bestof": "Žebříčky",
-    "about_us": "O nás"
+    "some_text": "Sudety Raport, kde kultura vzkvétá",
+    
+    "rap_weekly": "rapovy_tydenik",
+    "rap-tale": "rapove-pribehy",
+    "playlists": "playlisty",
+    "best_of": "zebricky",
+    "uncategorized": "nezarazeno",
+    "about-us": "o-nas",
+
+    "best of": "žebříčky",
+    "rap tales": "rapové příběhy",
+    "rap weekly": "rapový týdeník",
+    "about us": "o nás"
 }

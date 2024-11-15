@@ -3,17 +3,22 @@ import React, { useMemo, useState } from 'react'
 import Link from 'next/link';
 import Image from 'next/image';
 
-type Props = {
-  navBar: {
-    key: string;
-    value: string;
-  }[]
-}
+type NavBar = {
+  key: string;
+  value: string;
+  subpath: string;
+}[];
 
-// todo create a function for the links and links that will be translated use keywords
-const createLinks = (navBar: {key: string, value: string}[]) => {
+type Props = {
+  navBar: NavBar
+};
+
+const createLinks = (navBar: NavBar) => {
   return navBar.map((item) => {
-    return <Link href={`/${item.key}`} key={item.key} className="text-white block hover:bg-white hover:text-black rounded-lg p-2 text-center">{item.value}</Link>;
+    return (
+      <li key={item.key}>
+        <Link href={`${item.subpath}/${item.key}`} className="text-white block hover:bg-white hover:text-black rounded-lg p-2 text-center">{item.value}</Link>
+      </li>);
   });
 };
 
@@ -27,8 +32,8 @@ export const Header = ({ navBar }: Props) => {
   const cachedLinks = useMemo(() => createLinks(navBar), [navBar]);
 
   return (
-    <header className='sticky top-0'>
-        <nav className='bg-black sticky w-full top-0 left-0'>
+    <header className='sticky top-0 bg-white dark:bg-gray-900'>
+        <nav className='sticky w-full top-0 left-0'>
             <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
                 <div className='flex items-center justify-between h-16'>
                   <div className='flex items-center'>
@@ -40,7 +45,9 @@ export const Header = ({ navBar }: Props) => {
                   </div>
                   <div className='hidden md:block'>
                     <div className='ml-4 flex items-center space-x-4'>
-                      {cachedLinks}
+                      <ul className='flex'>
+                        {cachedLinks}
+                      </ul>
                     </div>
                   </div>
                   <div className='md:hidden  flex items-center'>
@@ -80,7 +87,9 @@ export const Header = ({ navBar }: Props) => {
               isOpen && (
                 <div className='md:hidden'>
                   <div className='px-2 py-2 space-y-1 sm:px3'>
+                    <ul>
                       {cachedLinks}
+                    </ul>
                   </div>
                 </div>
               )
