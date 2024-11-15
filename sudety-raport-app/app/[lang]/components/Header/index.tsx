@@ -1,5 +1,5 @@
 "use client";
-import React, { useMemo, useState } from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -13,14 +13,11 @@ type Props = {
   navBar: NavBar
 };
 
-const createLinks = (navBar: NavBar) => {
-  return navBar.map((item) => {
-    return (
-      <li key={item.key}>
-        <Link href={`${item.subpath}/${item.key}`} className="text-white block hover:bg-white hover:text-black rounded-lg p-2 text-center">{item.value}</Link>
-      </li>);
-  });
-};
+// const createLinks = (navBar: NavBar) => {
+//   return navBar.map((item) => {
+//     return <Link href={`${item.subpath}/${item.key}`} className="text-white block hover:bg-white hover:text-black rounded-lg p-2 text-center">{item.value}</Link>;
+//   });
+// };
 
 export const Header = ({ navBar }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,12 +26,12 @@ export const Header = ({ navBar }: Props) => {
     setIsOpen(!isOpen);
   };
 
-  const cachedLinks = useMemo(() => createLinks(navBar), [navBar]);
+  // const cachedLinks = useMemo(() => createLinks(navBar), [navBar]);
 
   return (
     <header className='sticky top-0 bg-white dark:bg-gray-900'>
         <nav className='sticky w-full top-0 left-0'>
-            <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+            <div className='mx-auto px-3 sm:px-5 lg:px-8'>
                 <div className='flex items-center justify-between h-16'>
                   <div className='flex items-center'>
                     <div className='flex-shrink-0'>
@@ -46,7 +43,15 @@ export const Header = ({ navBar }: Props) => {
                   <div className='hidden md:block'>
                     <div className='ml-4 flex items-center space-x-4'>
                       <ul className='flex'>
-                        {cachedLinks}
+                        {
+                          navBar.map((item) => {
+                            return (
+                              <li key={`${item.key}-top`}>
+                                <Link href={`${item.subpath}/${item.key}`} className="text-white block hover:bg-white hover:text-black rounded-lg p-2 text-center">{item.value}</Link>
+                              </li>
+                            );
+                          })
+                        }
                       </ul>
                     </div>
                   </div>
@@ -88,7 +93,15 @@ export const Header = ({ navBar }: Props) => {
                 <div className='md:hidden'>
                   <div className='px-2 py-2 space-y-1 sm:px3'>
                     <ul>
-                      {cachedLinks}
+                      {
+                        navBar.map((item) => {
+                          return (
+                            <li key={`${item.key}-bottom`}>
+                              <Link href={`${item.subpath}/${item.key}`} className="text-white block hover:bg-white hover:text-black rounded-lg p-2 text-center">{item.value}</Link>
+                            </li>
+                          );
+                        })
+                    }
                     </ul>
                   </div>
                 </div>
