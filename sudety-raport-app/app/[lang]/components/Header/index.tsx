@@ -29,7 +29,7 @@ export const Header = ({ navBar }: Props) => {
   // const cachedLinks = useMemo(() => createLinks(navBar), [navBar]);
 
   return (
-    <header className='sticky top-0 bg-white dark:bg-gray-900'>
+    <header className='sticky top-0 backdrop-blur-sm bg-[rgba(17,24,39,0.95)]'>
         <nav className='sticky w-full top-0 left-0'>
             <div className='mx-auto px-3 sm:px-5 lg:px-8'>
                 <div className='flex items-center justify-between h-16'>
@@ -47,7 +47,7 @@ export const Header = ({ navBar }: Props) => {
                           navBar.map((item) => {
                             return (
                               <li key={`${item.key}-top`}>
-                                <Link href={`${item.subpath}/${item.key}`} className="text-white block hover:bg-white hover:text-black rounded-lg p-2 text-center">{item.value}</Link>
+                                <Link href={`${item.subpath}/${item.key}`} className="hover:text-purple-600 text-white block rounded-lg p-2 text-center text-xs">{item.value.toUpperCase()}</Link>
                               </li>
                             );
                           })
@@ -97,11 +97,11 @@ export const Header = ({ navBar }: Props) => {
                         navBar.map((item) => {
                           return (
                             <li key={`${item.key}-bottom`}>
-                              <Link href={`${item.subpath}/${item.key}`} className="text-white block hover:bg-white hover:text-black rounded-lg p-2 text-center">{item.value}</Link>
+                              <Link href={`${item.subpath}/${item.key}`} className="text-white block hover:bg-white hover:text-black p-2 text-center">{item.value.toUpperCase()}</Link>
                             </li>
                           );
                         })
-                    }
+                      }
                     </ul>
                   </div>
                 </div>

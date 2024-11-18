@@ -20,7 +20,7 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "Sudety Raport",
-  description: "todo",
+  description: "Encyklopedie RAPU. Největší poklady napříč historií a všemi subžánry. Zásadní alba scény + výběr nejlepších desek měsíce, playlisty a recenze.",
 };
 
 export const categories = [
@@ -84,7 +84,9 @@ export default async function Root({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Header navBar={translateNavBar(intl, lang)} />
-        {children}
+        <div className="min-h-screen">
+          {children}
+        </div>
         <Footer />
       </body>
     </html>
