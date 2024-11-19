@@ -1,0 +1,18 @@
+{
+    "HomePage": {
+        "title": "todo"
+    },
+    "Header": {
+        "rap_weekly": "rap weekly",
+        "rap-tales": "rap tales",
+        "playlists": "playlists",
+        "best_of": "best of",
+        "uncategorized": "uncategorized",
+        "about-us": "about us"
+    },
+    "Footer": {
+        "support-us": "support us",
+        "get-more": "get more",
+        "follow-us": "follow us"
+    }
+}

@@ -1,7 +1,10 @@
 import React from 'react'
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 
 export const Footer: React.FC = () => {
+  const t = useTranslations("Footer");
+
   return (
     <footer className='bg-white dark:bg-gray-900'>
       <div className='mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8'>
@@ -14,7 +17,7 @@ export const Footer: React.FC = () => {
           </div>
           <div className='grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3'>
             <div>
-              <h2 className='mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white'>Support Us</h2>
+              <h2 className='mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white'>{t("support-us")}</h2>
               <ul className='text-gray:500 dark:text-gray-400 font-medium'>
                 <li className='mb-4'>
                   <a href='https://buymeacoffee.com/sudetyraport' target='_blank' className='hover:underline font-medium hover:text-red-600 text-red-400'>Buy me a coffee</a>
@@ -26,7 +29,7 @@ export const Footer: React.FC = () => {
             </div>
             <div>
               <h2 className='mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white'>
-                Get More
+              {t("get-more")}
               </h2>
               <ul className='text-gray-500 dark: text-gray-400 font-medium'>
                 <li className='mb-4'>
@@ -41,7 +44,7 @@ export const Footer: React.FC = () => {
               </ul>
             </div>
             <div>
-              <h2 className='mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white'>Follow Us</h2>
+              <h2 className='mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white'>{t("follow-us")}</h2>
               <ul className='text-gray-500 dark:text-gray-400 font-medium'>
                 <li className='mb-4'>
                   <a href='#' target='_blank'className='hover:underline'>Instagram</a>

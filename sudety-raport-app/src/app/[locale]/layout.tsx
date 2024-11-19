@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { getMessages } from 'next-intl/server';
+import { NextIntlClientProvider } from 'next-intl';
+import { routing } from '@/i18n/routing';
+import { notFound } from 'next/navigation';
 
-import { Locale, getDictionary } from './dictionaries';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 
@@ -26,27 +29,22 @@ export const metadata: Metadata = {
 export const categories = [
   { 
     key: "rap_weekly",
-    value: "rap weekly",
     subpath: "/categories"
    },
   { 
     key: "rap-tales",
-    value: "rap tales",
     subpath: "/categories"
    },
   { 
     key: "playlists",
-    value: "playlists",
     subpath: "/categories"
   },
   { 
     key: "best_of",
-    value: "best of",
     subpath: "/categories"
   },
   { 
     key: "uncategorized",
-    value: "uncategorized",
     subpath: "/categories"
   }
 ];
@@ -55,44 +53,50 @@ export const navBar = [
   ...categories,
   {
     key: 'about-us',
-    value: 'about us',
     subpath: "/pages"
   }
 ];
 
-const translateNavBar = (translator: {[key: string]: string}, lang: string) => {
-  if (lang == 'en') {
-    return navBar;
-  }
-  return navBar.map((item) => {
-    return {key: translator[item.key], value: translator[item.value], subpath: item.subpath};
-  });
-};
+// const translateNavBar = (translator: {[key: string]: string}, lang: string) => {
+//   if (lang == 'en') {
+//     return navBar;
+//   }
+//   return navBar.map((item) => {
+//     return {key: translator[item.key], value: translator[item.value], subpath: item.subpath};
+//   });
+// };
 
-export default async function Root({
+export default async function LocaleLayout({
   children, params
 }: Readonly<{
   children: React.ReactNode;
-  params: Promise<{ lang: Locale }>;
+  params: Promise<{ locale: string }>;
 }>) {
-  const { lang } = await params;
-  const intl = await getDictionary(lang);
+  const { locale } = await params;
+  if (!routing.locales.includes(locale as "en" | "cs-CZ")) {
+    notFound();
+  }
+
+  // Providing all messages to the client
+  const messages = await getMessages();
 
   return (
-    <html lang={ lang }>
+    <html lang={ locale }>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Header navBar={translateNavBar(intl, lang)} />
-        <div className="min-h-screen">
-          {children}
-        </div>
-        <Footer />
+        <NextIntlClientProvider messages={messages}>
+          <Header navBar={navBar} />
+          <div className="min-h-screen">
+            {children}
+          </div>
+          <Footer />
+        </NextIntlClientProvider>
       </body>
     </html>
   );
 }
 
-export async function generateStaticParams() {
-  return [{ lang: 'en' }, { lang: 'cs-CZ' }];
-}
+// export async function generateStaticParams() {
+//   return [{ locale: 'en' }, { locale: 'cs-CZ' }];
+// }

@@ -1,11 +1,12 @@
 "use client";
 import React, { useState } from 'react'
-import Link from 'next/link';
 import Image from 'next/image';
+import { Link } from '@/i18n/routing';
+import { useTranslations } from 'next-intl';
+
 
 type NavBar = {
   key: string;
-  value: string;
   subpath: string;
 }[];
 
@@ -21,6 +22,7 @@ type Props = {
 
 export const Header = ({ navBar }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
+  const t = useTranslations("Header");
 
   const isOpenHelper = () => {
     setIsOpen(!isOpen);
@@ -47,7 +49,7 @@ export const Header = ({ navBar }: Props) => {
                           navBar.map((item) => {
                             return (
                               <li key={`${item.key}-top`}>
-                                <Link href={`${item.subpath}/${item.key}`} className="hover:text-purple-600 text-white block rounded-lg p-2 text-center text-xs">{item.value.toUpperCase()}</Link>
+                                <Link href={`${item.subpath}/${item.key}`} className="hover:text-purple-600 text-white block rounded-lg p-2 text-center text-xs uppercase">{t(item.key)}</Link>
                               </li>
                             );
                           })
@@ -97,7 +99,7 @@ export const Header = ({ navBar }: Props) => {
                         navBar.map((item) => {
                           return (
                             <li key={`${item.key}-bottom`}>
-                              <Link href={`${item.subpath}/${item.key}`} className="text-white block hover:bg-white hover:bg-opacity-20 hover:backdrop-invert hover:text-black p-2 text-center hover:rounded">{item.value.toUpperCase()}</Link>
+                              <Link href={`${item.subpath}/${item.key}`} className="text-white block hover:bg-white hover:bg-opacity-20 hover:backdrop-invert hover:text-black p-2 text-center hover:rounded uppercase">{t(item.key)}</Link>
                             </li>
                           );
                         })
