@@ -2,6 +2,10 @@
     "HomePage": {
         "title": "todo"
     },
+    "Metadata": {
+        "title": "Sudety Raport",
+        "description": "Encyklopedie RAPU. Největší poklady napříč historií a všemi subžánry. Zásadní alba scény + výběr nejlepších desek měsíce, playlisty a recenze."
+    },
     "Header": {
         "rap_weekly": "rapový týdeník",
         "rap-tales": "rapové příběhy",

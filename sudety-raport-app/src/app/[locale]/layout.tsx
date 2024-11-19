@@ -1,12 +1,14 @@
-import type { Metadata } from "next";
 import localFont from "next/font/local";
-import { getMessages } from 'next-intl/server';
+import { 
+  getMessages,
+  getTranslations 
+} from 'next-intl/server';
 import { NextIntlClientProvider } from 'next-intl';
 import { routing } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
 
-import { Header } from './components/Header';
-import { Footer } from './components/Footer';
+import { Header } from './_components/Header';
+import { Footer } from './_components/Footer';
 
 import "./globals.css";
 
@@ -21,50 +23,16 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-export const metadata: Metadata = {
-  title: "Sudety Raport",
-  description: "Encyklopedie RAPU. Největší poklady napříč historií a všemi subžánry. Zásadní alba scény + výběr nejlepších desek měsíce, playlisty a recenze.",
-};
+export async function generateMetadata({ params }: {params:  Promise<{locale: string}>}) {
+  const { locale } = await params;
+  const t = await getTranslations({locale, namespace: 'Metadata'});
+ 
+  return {
+    title: t('title'),
+    description: t('description')
+  };
+}
 
-export const categories = [
-  { 
-    key: "rap_weekly",
-    subpath: "/categories"
-   },
-  { 
-    key: "rap-tales",
-    subpath: "/categories"
-   },
-  { 
-    key: "playlists",
-    subpath: "/categories"
-  },
-  { 
-    key: "best_of",
-    subpath: "/categories"
-  },
-  { 
-    key: "uncategorized",
-    subpath: "/categories"
-  }
-];
-
-export const navBar = [
-  ...categories,
-  {
-    key: 'about-us',
-    subpath: "/pages"
-  }
-];
-
-// const translateNavBar = (translator: {[key: string]: string}, lang: string) => {
-//   if (lang == 'en') {
-//     return navBar;
-//   }
-//   return navBar.map((item) => {
-//     return {key: translator[item.key], value: translator[item.value], subpath: item.subpath};
-//   });
-// };
 
 export default async function LocaleLayout({
   children, params
@@ -86,7 +54,7 @@ export default async function LocaleLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <NextIntlClientProvider messages={messages}>
-          <Header navBar={navBar} />
+          <Header />
           <div className="min-h-screen">
             {children}
           </div>
@@ -96,7 +64,3 @@ export default async function LocaleLayout({
     </html>
   );
 }
-
-// export async function generateStaticParams() {
-//   return [{ locale: 'en' }, { locale: 'cs-CZ' }];
-// }

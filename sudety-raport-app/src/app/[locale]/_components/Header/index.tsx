@@ -4,15 +4,37 @@ import Image from 'next/image';
 import { Link } from '@/i18n/routing';
 import { useTranslations } from 'next-intl';
 
+const categories = [
+  { 
+    key: "rap_weekly",
+    subpath: "/categories"
+   },
+  { 
+    key: "rap-tales",
+    subpath: "/categories"
+   },
+  { 
+    key: "playlists",
+    subpath: "/categories"
+  },
+  { 
+    key: "best_of",
+    subpath: "/categories"
+  },
+  { 
+    key: "uncategorized",
+    subpath: "/categories"
+  }
+];
 
-type NavBar = {
-  key: string;
-  subpath: string;
-}[];
+const navBar = [
+  ...categories,
+  {
+    key: 'about-us',
+    subpath: "/pages"
+  }
+];
 
-type Props = {
-  navBar: NavBar
-};
 
 // const createLinks = (navBar: NavBar) => {
 //   return navBar.map((item) => {
@@ -20,15 +42,13 @@ type Props = {
 //   });
 // };
 
-export const Header = ({ navBar }: Props) => {
+export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const t = useTranslations("Header");
 
   const isOpenHelper = () => {
     setIsOpen(!isOpen);
   };
-
-  // const cachedLinks = useMemo(() => createLinks(navBar), [navBar]);
 
   return (
     <header className='sticky top-0 backdrop-blur-sm bg-[rgba(17,24,39,0.5)]'>
@@ -99,7 +119,9 @@ export const Header = ({ navBar }: Props) => {
                         navBar.map((item) => {
                           return (
                             <li key={`${item.key}-bottom`}>
-                              <Link href={`${item.subpath}/${item.key}`} className="text-white block hover:bg-white hover:bg-opacity-20 hover:backdrop-invert hover:text-black p-2 text-center hover:rounded uppercase">{t(item.key)}</Link>
+                              <Link href={`${item.subpath}/${item.key}`} className="text-white block hover:bg-white hover:bg-opacity-20 hover:backdrop-invert hover:text-black p-2 text-center hover:rounded uppercase">
+                                {t(item.key)}
+                              </Link>
                             </li>
                           );
                         })
