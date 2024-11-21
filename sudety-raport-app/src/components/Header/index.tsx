@@ -4,6 +4,8 @@ import Image from 'next/image';
 import { Link } from '@/i18n/routing';
 import { useTranslations } from 'next-intl';
 
+import LocaleSwitcher from '@/components/LocaleSwitcher';
+
 const categories: {
   key: string;
   subpath: '/categories';
@@ -30,11 +32,10 @@ const categories: {
   }
 ];
 
-const navBar: {
+const pages: {
   key: string;
-  subpath: "/pages" | "/categories";
+  subpath: "/pages";
 }[] = [
-  ...categories,
   {
     key: 'about-us',
     subpath: "/pages"
@@ -71,13 +72,27 @@ export const Header = () => {
                     <div className='ml-4 flex items-center space-x-4'>
                       <ul className='flex'>
                         {
-                          navBar.map((item) => {
+                          categories.map((item) => {
                             return (
                               <li key={`${item.key}-top`}>
                                 <Link href={{
-                                  pathname: `${item.subpath}/[keyId]`,
+                                  pathname: `${item.subpath}/[categoryId]`,
                                   params: {
-                                    keyId: item.key
+                                    categoryId: item.key
+                                  }
+                                }} className="hover:text-purple-600 text-white block rounded-lg p-2 text-center text-xs uppercase">{t(item.key)}</Link>
+                              </li>
+                            );
+                          })
+                        }
+                        {
+                          pages.map((item) => {
+                            return (
+                              <li key={`${item.key}-top`}>
+                                <Link href={{
+                                  pathname: `${item.subpath}/[pageId]`,
+                                  params: {
+                                    pageId: item.key
                                   }
                                 }} className="hover:text-purple-600 text-white block rounded-lg p-2 text-center text-xs uppercase">{t(item.key)}</Link>
                               </li>
@@ -85,10 +100,12 @@ export const Header = () => {
                           })
                         }
                       </ul>
+                      <LocaleSwitcher />
                     </div>
                   </div>
                   <div className='md:hidden  flex items-center'>
-                    <button className='inline-flex items-center justify-center p-2 rounded-md text-white md:text-white hover:text-white focus:outline-none focus:ring-0 focus:ring-inset focus:ring-white' onClick={isOpenHelper}>
+                    <LocaleSwitcher />
+                    <button className='inline-flex items-center justify-center p-2 rounded-md text-purple-800 md:text-purple-800 hover:text-purple-400 focus:outline-none focus:ring-0 focus:ring-inset focus:ring-white' onClick={isOpenHelper}>
                       {
                         isOpen ? (
                           <svg  className="h-6 w-6"
@@ -126,13 +143,13 @@ export const Header = () => {
                   <div className='px-2 py-2 space-y-1 sm:px3'>
                     <ul>
                       {
-                        navBar.map((item) => {
+                        categories.map((item) => {
                           return (
                             <li key={`${item.key}-bottom`}>
                               <Link href={{
-                                  pathname: `${item.subpath}/[keyId]`,
+                                  pathname: `${item.subpath}/[categoryId]`,
                                   params: {
-                                    keyId: item.key
+                                    categoryId: item.key
                                   }
                                 }} className="text-white block hover:bg-white hover:bg-opacity-20 hover:backdrop-invert hover:text-black p-2 text-center hover:rounded uppercase">
                                 {t(item.key)}
@@ -141,6 +158,22 @@ export const Header = () => {
                           );
                         })
                       }
+                      {
+                          pages.map((item) => {
+                            return (
+                              <li key={`${item.key}-bottom`}>
+                                <Link href={{
+                                    pathname: `${item.subpath}/[pageId]`,
+                                    params: {
+                                      pageId: item.key
+                                    }
+                                  }} className="text-white block hover:bg-white hover:bg-opacity-20 hover:backdrop-invert hover:text-black p-2 text-center hover:rounded uppercase">
+                                  {t(item.key)}
+                                </Link>
+                              </li>
+                            );
+                          })
+                        }
                     </ul>
                   </div>
                 </div>

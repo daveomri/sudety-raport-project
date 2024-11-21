@@ -8,13 +8,13 @@ export const routing = defineRouting({
   defaultLocale: 'en',
   pathnames: {
     '/': '/',
-    '/pages/[keyId]': {
-      en: '/pages/[keyId]',
-      'cs-CZ': '/stranky/[keyId]'
+    '/pages/[pageId]': {
+      en: '/pages/[pageId]',
+      'cs-CZ': '/stranky/[pageId]'
     },
-    '/categories/[keyId]': {
-      en: '/categories/[keyId]',
-      'cs-CZ': '/kategorie/[keyId]'
+    '/categories/[categoryId]': {
+      en: '/categories/[categoryId]',
+      'cs-CZ': '/kategorie/[categoryId]'
     }
   }
 });

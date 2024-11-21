@@ -14,9 +14,21 @@
         "uncategorized": "nezařazeno",
         "about-us": "o nás"
     },
+    "Slugs": {
+        "rap_weekly": "rapovy_tydenik",
+        "rap-tales": "rapove_pribehy",
+        "playlists": "playlisty",
+        "best_of": "zebricky",
+        "uncategorized": "nezarazeno",
+        "about-us": "o_nas"
+    },
     "Footer": {
         "support-us": "podpoř nás",
         "get-more": "získej víc",
         "follow-us": "sleduj nás"
+    },
+    "LocaleSwitcher": {
+        "label": "Změň jazyk",
+        "locale": "{locale, select, cs_CZ {CZ} en {EN} other {Unknown}}"
     }
 }

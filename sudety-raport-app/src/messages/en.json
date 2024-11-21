@@ -14,9 +14,21 @@
         "uncategorized": "uncategorized",
         "about-us": "about us"
     },
+    "Slugs": {
+        "rap_weekly": "rap_weekly",
+        "rap-tales": "rap-tales",
+        "playlists": "playlists",
+        "best_of": "best_of",
+        "uncategorized": "uncategorized",
+        "about-us": "about-us"
+    },
     "Footer": {
         "support-us": "support us",
         "get-more": "get more",
         "follow-us": "follow us"
+    },
+    "LocaleSwitcher": {
+        "label": "Change language",
+        "locale": "{locale, select, cs_CZ {CZ} en {EN} other {Unknown}}"
     }
 }

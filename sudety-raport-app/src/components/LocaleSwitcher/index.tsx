@@ -13,7 +13,7 @@ export default function LocaleSwitcher() {
     <LocaleSwitcherSelect defaultValue={locale} label={t('label')}>
       {routing.locales.map((cur) => (
         <option key={cur} value={cur}>
-          {t('locale', {locale: cur})}
+          {t('locale', {locale: cur === 'cs-CZ' ? 'cs_CZ' : cur})}
         </option>
       ))}
     </LocaleSwitcherSelect>
