@@ -12,6 +12,11 @@ export default getRequestConfig(async ({requestLocale}) => {
  
   return {
     locale,
-    messages: (await import(`../messages/${locale}.json`)).default
+    messages: (
+      await (locale === 'en'
+        ? // this enables hmr for 'en' when using turbopack
+        import('../messages/en.json')
+        : import(`../messages/${locale}.json`))
+    ).default
   };
 });

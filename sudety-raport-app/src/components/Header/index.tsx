@@ -4,7 +4,10 @@ import Image from 'next/image';
 import { Link } from '@/i18n/routing';
 import { useTranslations } from 'next-intl';
 
-const categories = [
+const categories: {
+  key: string;
+  subpath: '/categories';
+}[] = [
   { 
     key: "rap_weekly",
     subpath: "/categories"
@@ -27,14 +30,16 @@ const categories = [
   }
 ];
 
-const navBar = [
+const navBar: {
+  key: string;
+  subpath: "/pages" | "/categories";
+}[] = [
   ...categories,
   {
     key: 'about-us',
     subpath: "/pages"
   }
 ];
-
 
 // const createLinks = (navBar: NavBar) => {
 //   return navBar.map((item) => {
@@ -69,7 +74,12 @@ export const Header = () => {
                           navBar.map((item) => {
                             return (
                               <li key={`${item.key}-top`}>
-                                <Link href={`${item.subpath}/${item.key}`} className="hover:text-purple-600 text-white block rounded-lg p-2 text-center text-xs uppercase">{t(item.key)}</Link>
+                                <Link href={{
+                                  pathname: `${item.subpath}/[keyId]`,
+                                  params: {
+                                    keyId: item.key
+                                  }
+                                }} className="hover:text-purple-600 text-white block rounded-lg p-2 text-center text-xs uppercase">{t(item.key)}</Link>
                               </li>
                             );
                           })
@@ -119,7 +129,12 @@ export const Header = () => {
                         navBar.map((item) => {
                           return (
                             <li key={`${item.key}-bottom`}>
-                              <Link href={`${item.subpath}/${item.key}`} className="text-white block hover:bg-white hover:bg-opacity-20 hover:backdrop-invert hover:text-black p-2 text-center hover:rounded uppercase">
+                              <Link href={{
+                                  pathname: `${item.subpath}/[keyId]`,
+                                  params: {
+                                    keyId: item.key
+                                  }
+                                }} className="text-white block hover:bg-white hover:bg-opacity-20 hover:backdrop-invert hover:text-black p-2 text-center hover:rounded uppercase">
                                 {t(item.key)}
                               </Link>
                             </li>

@@ -7,8 +7,8 @@ import { NextIntlClientProvider } from 'next-intl';
 import { routing } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
 
-import { Header } from './_components/Header';
-import { Footer } from './_components/Footer';
+import { Header } from '@/components/Header';
+import { Footer } from '@/components/Footer';
 
 import "./globals.css";
 
