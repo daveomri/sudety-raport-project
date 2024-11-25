@@ -10,11 +10,11 @@ export const routing = defineRouting({
     '/': '/',
     '/pages/[pageId]': {
       en: '/pages/[pageId]',
-      'cs-CZ': '/stranky/[pageId]'
+      'cs-CZ': '/pages/[pageId]'
     },
     '/categories/[categoryId]': {
       en: '/categories/[categoryId]',
-      'cs-CZ': '/kategorie/[categoryId]'
+      'cs-CZ': '/categories/[categoryId]'
     }
   }
 });
