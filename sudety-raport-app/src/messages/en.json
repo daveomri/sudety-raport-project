@@ -1,0 +1,34 @@
+{
+    "HomePage": {
+        "title": "todo"
+    },
+    "Metadata": {
+        "title": "Sudety Raport",
+        "description": "Encyclopedia of Rap. The biggest treasures in rap history and across all subgenres. Featuring crucial albums from the scene, a selection of the best records of the month, curated playlists, and detailed reviews."
+    },
+    "Header": {
+        "rap_weekly": "rap weekly",
+        "rap-tales": "rap tales",
+        "playlists": "playlists",
+        "best_of": "best of",
+        "uncategorized": "uncategorized",
+        "about-us": "about us"
+    },
+    "Slugs": {
+        "rap_weekly": "rap_weekly",
+        "rap-tales": "rap-tales",
+        "playlists": "playlists",
+        "best_of": "best_of",
+        "uncategorized": "uncategorized",
+        "about-us": "about-us"
+    },
+    "Footer": {
+        "support-us": "support us",
+        "get-more": "get more",
+        "follow-us": "follow us"
+    },
+    "LocaleSwitcher": {
+        "label": "Change language",
+        "locale": "{locale, select, cs_CZ {CZ} en {EN} other {Unknown}}"
+    }
+}

@@ -1,0 +1,34 @@
+{
+    "HomePage": {
+        "title": "todo"
+    },
+    "Metadata": {
+        "title": "Sudety Raport",
+        "description": "Encyklopedie RAPU. Největší poklady napříč historií a všemi subžánry. Zásadní alba scény + výběr nejlepších desek měsíce, playlisty a recenze."
+    },
+    "Header": {
+        "rap_weekly": "rapový týdeník",
+        "rap-tales": "rapové příběhy",
+        "playlists": "playlisty",
+        "best_of": "žebříčky",
+        "uncategorized": "nezařazeno",
+        "about-us": "o nás"
+    },
+    "Slugs": {
+        "rap_weekly": "rapovy_tydenik",
+        "rap-tales": "rapove_pribehy",
+        "playlists": "playlisty",
+        "best_of": "zebricky",
+        "uncategorized": "nezarazeno",
+        "about-us": "o_nas"
+    },
+    "Footer": {
+        "support-us": "podpoř nás",
+        "get-more": "získej víc",
+        "follow-us": "sleduj nás"
+    },
+    "LocaleSwitcher": {
+        "label": "Změň jazyk",
+        "locale": "{locale, select, cs_CZ {CZ} en {EN} other {Unknown}}"
+    }
+}
