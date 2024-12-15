@@ -24,7 +24,7 @@ type PagesDataType = {
 export default async function Pages({ params }: Readonly<{ params: Promise<{ locale: string }>}>) {
   const { locale } = await params;
 
-  const { data, errors}: ApolloQueryResult<PagesDataType> = await client.query({
+  const { data, errors }: ApolloQueryResult<PagesDataType> = await client.query({
     query: GET_ALL_PAGES,
     variables: {
       language: locale === 'cs-CZ' ? 'CZ' : locale.toUpperCase(),
@@ -39,17 +39,17 @@ export default async function Pages({ params }: Readonly<{ params: Promise<{ loc
   }
 
   return (
-    <div>
+    <div className="mx-[25vw] max-w-[1024px]">
       <p>{locale === 'cs-CZ' ? "Stránky" : "Pages"}</p>
       {
         data.pages.edges.map((page => {
           const { id, title, excerpt } = page.node;
 
           return (
-            <div key={id} className='border-t-2'>
+            <div key={id} className='border-2 mt-2 w-full'>
               <h1>{title}</h1>
               <p>
-                <span dangerouslySetInnerHTML={{__html: excerpt}} />
+                <div dangerouslySetInnerHTML={{__html: excerpt}} />
               </p>
             </div>
           );
